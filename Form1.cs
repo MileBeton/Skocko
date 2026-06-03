@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -72,7 +72,7 @@ namespace WindowsFormsApplication3
             lbl.ForeColor = Color.FromArgb(160, 160, 160);
             lbl.Font = new Font("Segoe UI", 8f, FontStyle.Bold);
             lbl.AutoSize = true;
-            lbl.Location = new Point(326, 56);
+            lbl.Location = new Point(326, 110);
             this.Controls.Add(lbl);
 
             for (int i = 0; i < SYMBOLS.Length; i++)
@@ -80,7 +80,7 @@ namespace WindowsFormsApplication3
                 Panel p = new Panel();
                 p.Size = new Size(CELL, CELL);
                 p.Location = new Point(326 + (i % 3) * (CELL + GAP),
-                                           74 + (i / 3) * (CELL + GAP));
+                                           130 + (i / 3) * (CELL + GAP));
                 p.BackColor = Color.FromArgb(15, 15, 30);
                 p.Cursor = Cursors.Hand;
                 p.Tag = i;
@@ -96,7 +96,7 @@ namespace WindowsFormsApplication3
             lblStatus.ForeColor = Color.FromArgb(200, 200, 200);
             lblStatus.Font = new Font("Segoe UI", 9f);
             lblStatus.Size = new Size(200, 60);
-            lblStatus.Location = new Point(326, 230);
+            lblStatus.Location = new Point(326, 260);
             lblStatus.TextAlign = ContentAlignment.TopCenter;
             this.Controls.Add(lblStatus);
 
@@ -291,8 +291,8 @@ namespace WindowsFormsApplication3
                     {
                         int dx = fbX + (d % 2) * (FB + 3);
                         int dy = rowY + (d / 2) * (FB + 3) + (CELL - 2 * (FB + 3)) / 2;
-                        Color dc = dots[d] == 2 ? Color.FromArgb(30, 30, 30)
-                                 : dots[d] == 1 ? Color.FromArgb(220, 220, 220)
+                        Color dc = dots[d] == 2 ? Color.FromArgb(220, 60, 60)
+                                 : dots[d] == 1 ? Color.FromArgb(255, 215,  0)
                                  : Color.FromArgb(50, 50, 70);
                         Color bc = dots[d] == 2 ? Color.FromArgb(150, 150, 150)
                                  : dots[d] == 1 ? Color.FromArgb(200, 200, 200)
