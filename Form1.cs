@@ -86,6 +86,7 @@ namespace WindowsFormsApplication3
                 p.Tag = i;
                 p.Paint += new PaintEventHandler(symBtn_Paint);
                 p.MouseClick += new MouseEventHandler(symBtn_Click);
+                p.MouseDoubleClick += new MouseEventHandler(symBtn_Click);
                 p.MouseEnter += new EventHandler(symBtn_MouseEnter);
                 p.MouseLeave += new EventHandler(symBtn_MouseLeave);
                 symButtons[i] = p;
@@ -127,8 +128,8 @@ namespace WindowsFormsApplication3
             this.Controls.Add(btnr);
 
             string[] leg = {
-                "Crna tacka = tacno mesto",
-                "Bela tacka  = tacan simbol,",
+                "Crvena tacka = tacno mesto",
+                "Zuta tacka  = tacan simbol,",
                 "  ali pogresno mesto"
             };
             int ly = 400;
