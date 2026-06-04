@@ -1,4 +1,4 @@
-﻿﻿using System;
+using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -95,7 +95,7 @@ namespace WindowsFormsApplication3
             lblStatus = new Label();
             lblStatus.ForeColor = Color.FromArgb(200, 200, 200);
             lblStatus.Font = new Font("Segoe UI", 9f);
-            lblStatus.Size = new Size(200, 60);
+            lblStatus.Size = new Size(200, 30);
             lblStatus.Location = new Point(326, 260);
             lblStatus.TextAlign = ContentAlignment.TopCenter;
             this.Controls.Add(lblStatus);
@@ -106,7 +106,7 @@ namespace WindowsFormsApplication3
             btnNew.Text = "NOVA IGRA";
             btnNew.Font = new Font("Segoe UI", 9f, FontStyle.Bold);
             btnNew.Size = new Size(150, 34);
-            btnNew.Location = new Point(326, 340);
+            btnNew.Location = new Point(326, 320);
             btnNew.BackColor = Color.FromArgb(200, 70, 70);
             btnNew.ForeColor = Color.White;
             btnNew.FlatStyle = FlatStyle.Flat;
@@ -114,12 +114,24 @@ namespace WindowsFormsApplication3
             btnNew.Click += new EventHandler(btnNew_Click);
             this.Controls.Add(btnNew);
 
+            Button btnr = new Button();
+            btnr.Text = "RESTART";
+            btnr.Font = new Font("Segoe UI", 9f, FontStyle.Bold);
+            btnr.Size = new Size(150, 34);
+            btnr.Location = new Point(326, 360);
+            btnr.BackColor = Color.FromArgb(200, 70, 70);
+            btnr.ForeColor = Color.White;
+            btnr.FlatStyle = FlatStyle.Flat;
+            btnr.FlatAppearance.BorderSize = 0;
+            btnr.Click += new EventHandler(btnr_Click);
+            this.Controls.Add(btnr);
+
             string[] leg = {
                 "Crna tacka = tacno mesto",
                 "Bela tacka  = tacan simbol,",
                 "  ali pogresno mesto"
             };
-            int ly = 390;
+            int ly = 400;
             foreach (string line in leg)
             {
                 Label ll = new Label();
@@ -137,14 +149,13 @@ namespace WindowsFormsApplication3
         {
             NewGame();
         }
-
-        void NewGame()
+        void btnr_Click(object sender, EventArgs e)
         {
-            Random rnd = new Random();
-            secret = new int[COLS];
-            for (int i = 0; i < COLS; i++)
-                secret[i] = rnd.Next(SYMBOLS.Length);
+            RGame();
+        }
 
+        void RGame()
+        {
             guesses = new int[ROWS][];
             feedbackArr = new int[ROWS][];
             currentRow = 0;
@@ -154,6 +165,16 @@ namespace WindowsFormsApplication3
             SetStatus("Klikni simbol ->", Color.FromArgb(200, 200, 200));
             pnlBoard.Invalidate();
             RefreshSymButtons();
+        }
+
+        void NewGame()
+        {
+            Random rnd = new Random();
+            secret = new int[COLS];
+            for (int i = 0; i < COLS; i++)
+                secret[i] = rnd.Next(SYMBOLS.Length);
+
+            RGame();
         }
 
         void symBtn_Click(object sender, MouseEventArgs e)
@@ -292,7 +313,7 @@ namespace WindowsFormsApplication3
                         int dx = fbX + (d % 2) * (FB + 3);
                         int dy = rowY + (d / 2) * (FB + 3) + (CELL - 2 * (FB + 3)) / 2;
                         Color dc = dots[d] == 2 ? Color.FromArgb(220, 60, 60)
-                                 : dots[d] == 1 ? Color.FromArgb(255, 215,  0)
+                                 : dots[d] == 1 ? Color.FromArgb(255, 215, 0)
                                  : Color.FromArgb(50, 50, 70);
                         Color bc = dots[d] == 2 ? Color.FromArgb(150, 150, 150)
                                  : dots[d] == 1 ? Color.FromArgb(200, 200, 200)
